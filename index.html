@@ -168,13 +168,13 @@
                 <button class="tab-btn px-5 py-3 text-sm font-medium text-slate-600 hover:text-slate-900 whitespace-nowrap" data-tab="incoming">
                     <span class="flex items-center space-x-2">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4"/></svg>
-                        <span>입고 예정</span>
+                        <span>입고</span>
                     </span>
                 </button>
                 <button class="tab-btn px-5 py-3 text-sm font-medium text-slate-600 hover:text-slate-900 whitespace-nowrap" data-tab="outgoing">
                     <span class="flex items-center space-x-2">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8V4m0 0l4 4m-4-4l-4 4m-6 4v12m0 0l-4-4m4 4l4-4"/></svg>
-                        <span>출고 예정</span>
+                        <span>출고</span>
                     </span>
                 </button>
                 <button class="tab-btn px-5 py-3 text-sm font-medium text-slate-600 hover:text-slate-900 whitespace-nowrap" data-tab="products">
@@ -269,19 +269,19 @@
                 </div>
             </div>
 
-            <!-- 최근 입출고 예정 -->
+            <!-- 최근 입출고 -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
                     <h3 class="font-semibold text-slate-800 mb-5 flex items-center">
                         <svg class="w-5 h-5 mr-2 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4"/></svg>
-                        최근 입고 예정
+                        최근 입고
                     </h3>
                     <div id="recentIncoming" class="space-y-3"></div>
                 </div>
                 <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
                     <h3 class="font-semibold text-slate-800 mb-5 flex items-center">
                         <svg class="w-5 h-5 mr-2 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8V4m0 0l4 4m-4-4l-4 4"/></svg>
-                        최근 출고 예정
+                        최근 출고
                     </h3>
                     <div id="recentOutgoing" class="space-y-3"></div>
                 </div>
@@ -342,7 +342,7 @@
                                 <span class="flex items-center justify-center">현재재고 <span class="ml-1 sort-icon" data-col="currentStock">↕</span></span>
                             </th>
                             <th class="px-4 py-4 text-center text-xs font-semibold text-slate-500 uppercase tracking-wider cursor-pointer hover:bg-slate-100 select-none" onclick="sortInventory('incoming')">
-                                <span class="flex items-center justify-center">입고예정 <span class="ml-1 sort-icon" data-col="incoming">↕</span></span>
+                                <span class="flex items-center justify-center">입고 <span class="ml-1 sort-icon" data-col="incoming">↕</span></span>
                             </th>
                             <th class="px-4 py-4 text-center text-xs font-semibold text-sky-600 uppercase tracking-wider bg-sky-50/50">국내</th>
                             <th class="px-4 py-4 text-center text-xs font-semibold text-teal-600 uppercase tracking-wider bg-teal-50/50">해외</th>
@@ -360,10 +360,10 @@
             </div>
         </div>
 
-        <!-- 입고 예정 탭 -->
+        <!-- 입고 탭 -->
         <div id="incoming" class="tab-content">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-xl font-semibold text-slate-800">입고 예정</h2>
+                <h2 class="text-xl font-semibold text-slate-800">입고</h2>
                 <button onclick="openIncomingModal()" class="btn-primary text-white px-5 py-2.5 rounded-xl text-sm font-medium flex items-center space-x-2 no-print">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
                     <span>입고 등록</span>
@@ -391,10 +391,10 @@
             </div>
         </div>
 
-        <!-- 출고 예정 탭 -->
+        <!-- 출고 탭 -->
         <div id="outgoing" class="tab-content">
             <div class="flex justify-between items-center mb-6">
-                <h2 class="text-xl font-semibold text-slate-800">출고 예정</h2>
+                <h2 class="text-xl font-semibold text-slate-800">출고</h2>
                 <div class="flex items-center space-x-3 no-print">
                     <select id="channelFilter" onchange="renderOutgoingTable()" class="border border-slate-300 rounded-xl px-4 py-2.5 text-sm bg-white focus:ring-2 focus:ring-primary-500 focus:border-primary-500">
                         <option value="all">전체 지역</option>
@@ -529,8 +529,8 @@
                             <label class="block text-sm font-medium text-slate-600 mb-2">데이터 유형</label>
                             <select id="importType" class="w-full border border-slate-300 rounded-xl px-4 py-2.5 text-sm">
                                 <option value="products">제품 목록</option>
-                                <option value="incoming">입고 예정</option>
-                                <option value="outgoing">출고 예정</option>
+                                <option value="incoming">입고</option>
+                                <option value="outgoing">출고</option>
                             </select>
                         </div>
                         <div>
@@ -582,10 +582,10 @@
                         재고 현황
                     </button>
                     <button onclick="exportToExcel('incoming')" class="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-3 rounded-xl text-sm font-medium transition-colors">
-                        입고 예정
+                        입고
                     </button>
                     <button onclick="exportToExcel('outgoing')" class="bg-emerald-500 hover:bg-emerald-600 text-white px-4 py-3 rounded-xl text-sm font-medium transition-colors">
-                        출고 예정
+                        출고
                     </button>
                 </div>
             </div>
@@ -624,7 +624,7 @@
         </div>
     </div>
 
-    <!-- 입고 예정 추가/수정 모달 -->
+    <!-- 입고 추가/수정 모달 -->
     <div id="incomingModal" class="modal fixed inset-0 bg-slate-900/60 backdrop-blur-sm items-center justify-center z-50">
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md mx-4 overflow-hidden">
             <div class="px-6 py-5 border-b border-slate-200 bg-slate-50">
@@ -642,7 +642,7 @@
                         <input type="number" id="incomingQuantity" required min="1" class="w-full border border-slate-300 rounded-xl px-4 py-2.5 text-sm" placeholder="수량">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-2">입고 예정일 *</label>
+                        <label class="block text-sm font-medium text-slate-700 mb-2">입고일 *</label>
                         <input type="date" id="incomingDate" required class="w-full border border-slate-300 rounded-xl px-4 py-2.5 text-sm">
                     </div>
                 </div>
@@ -658,7 +658,7 @@
         </div>
     </div>
 
-    <!-- 출고 예정 추가/수정 모달 -->
+    <!-- 출고 추가/수정 모달 -->
     <div id="outgoingModal" class="modal fixed inset-0 bg-slate-900/60 backdrop-blur-sm items-center justify-center z-50">
         <div class="bg-white rounded-2xl shadow-2xl w-full max-w-md mx-4 overflow-hidden">
             <div class="px-6 py-5 border-b border-slate-200 bg-slate-50">
@@ -686,7 +686,7 @@
                         <input type="number" id="outgoingQuantity" required min="1" class="w-full border border-slate-300 rounded-xl px-4 py-2.5 text-sm" placeholder="수량">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium text-slate-700 mb-2">출고 예정일 *</label>
+                        <label class="block text-sm font-medium text-slate-700 mb-2">출고일 *</label>
                         <input type="date" id="outgoingDate" required class="w-full border border-slate-300 rounded-xl px-4 py-2.5 text-sm">
                     </div>
                 </div>
@@ -943,7 +943,7 @@
             });
             document.getElementById('lowStockAlert').innerHTML = alertHTML || '<p class="text-slate-400 text-center py-4">재고 부족 제품이 없습니다</p>';
 
-            // 최근 입고 예정
+            // 최근 입고
             const sortedIncoming = [...incoming].sort((a, b) => new Date(a.expectedDate) - new Date(b.expectedDate)).slice(0, 5);
             let incomingHTML = '';
             sortedIncoming.forEach(i => {
@@ -963,9 +963,9 @@
                     </div>
                 `;
             });
-            document.getElementById('recentIncoming').innerHTML = incomingHTML || '<p class="text-slate-400 text-center py-4">입고 예정이 없습니다</p>';
+            document.getElementById('recentIncoming').innerHTML = incomingHTML || '<p class="text-slate-400 text-center py-4">입고이 없습니다</p>';
 
-            // 최근 출고 예정
+            // 최근 출고
             const sortedOutgoing = [...outgoing].sort((a, b) => new Date(a.expectedDate) - new Date(b.expectedDate)).slice(0, 5);
             let outgoingHTML = '';
             sortedOutgoing.forEach(o => {
@@ -987,7 +987,7 @@
                     </div>
                 `;
             });
-            document.getElementById('recentOutgoing').innerHTML = outgoingHTML || '<p class="text-slate-400 text-center py-4">출고 예정이 없습니다</p>';
+            document.getElementById('recentOutgoing').innerHTML = outgoingHTML || '<p class="text-slate-400 text-center py-4">출고이 없습니다</p>';
         }
 
         // ===== 제품 관리 =====
@@ -1062,7 +1062,7 @@
         function editProduct(id) { openProductModal(id); }
 
         function deleteProduct(id) {
-            if (!confirm('이 제품을 삭제하시겠습니까?\n관련 재고 및 입출고 예정도 함께 삭제됩니다.')) return;
+            if (!confirm('이 제품을 삭제하시겠습니까?\n관련 재고 및 입출고도 함께 삭제됩니다.')) return;
 
             let products = loadData('products');
             let inventory = loadData('inventory');
@@ -1232,7 +1232,7 @@
             renderInventoryTable();
         }
 
-        // ===== 입고 예정 =====
+        // ===== 입고 =====
         function renderIncomingTable() {
             const products = loadData('products');
             const incoming = loadData('incoming');
@@ -1276,7 +1276,7 @@
                     </tr>
                 `;
             });
-            document.getElementById('incomingTable').innerHTML = html || '<tr><td colspan="5" class="px-5 py-12 text-center text-slate-400">입고 예정이 없습니다</td></tr>';
+            document.getElementById('incomingTable').innerHTML = html || '<tr><td colspan="5" class="px-5 py-12 text-center text-slate-400">입고이 없습니다</td></tr>';
         }
 
         function sortIncoming(column) {
@@ -1342,14 +1342,14 @@
         function editIncoming(id) { openIncomingModal(id); }
 
         function deleteIncoming(id) {
-            if (!confirm('이 입고 예정을 삭제하시겠습니까?')) return;
+            if (!confirm('이 입고을 삭제하시겠습니까?')) return;
             let incoming = loadData('incoming');
             incoming = incoming.filter(i => i.id !== id);
             saveData('incoming', incoming);
             renderIncomingTable();
         }
 
-        // ===== 출고 예정 =====
+        // ===== 출고 =====
         function renderOutgoingTable() {
             const products = loadData('products');
             const outgoing = loadData('outgoing');
@@ -1404,7 +1404,7 @@
                     </tr>
                 `;
             });
-            document.getElementById('outgoingTable').innerHTML = html || '<tr><td colspan="7" class="px-5 py-12 text-center text-slate-400">출고 예정이 없습니다</td></tr>';
+            document.getElementById('outgoingTable').innerHTML = html || '<tr><td colspan="7" class="px-5 py-12 text-center text-slate-400">출고이 없습니다</td></tr>';
         }
 
         function sortOutgoing(column) {
@@ -1474,7 +1474,7 @@
         function editOutgoing(id) { openOutgoingModal(id); }
 
         function deleteOutgoing(id) {
-            if (!confirm('이 출고 예정을 삭제하시겠습니까?')) return;
+            if (!confirm('이 출고을 삭제하시겠습니까?')) return;
             let outgoing = loadData('outgoing');
             outgoing = outgoing.filter(o => o.id !== id);
             saveData('outgoing', outgoing);
@@ -1506,23 +1506,23 @@
                         const channelOutgoing = {};
                         Object.keys(CHANNELS).forEach(ch => channelOutgoing[ch] = outgoing.filter(o => o.productId === p.id && o.channel === ch).reduce((sum, o) => sum + o.quantity, 0));
                         const totalOutgoing = Object.values(channelOutgoing).reduce((sum, v) => sum + v, 0);
-                        return { '모델명': p.name, '현재재고': currentStock, '입고예정': totalIncoming, '국내출고': channelOutgoing.domestic, '해외출고': channelOutgoing.overseas, '일본출고': channelOutgoing.japan, '미국출고': channelOutgoing.usa, '동남아출고': channelOutgoing.sea, '예상잔고': currentStock + totalIncoming - totalOutgoing };
+                        return { '모델명': p.name, '현재재고': currentStock, '입고': totalIncoming, '국내출고': channelOutgoing.domestic, '해외출고': channelOutgoing.overseas, '일본출고': channelOutgoing.japan, '미국출고': channelOutgoing.usa, '동남아출고': channelOutgoing.sea, '예상잔고': currentStock + totalIncoming - totalOutgoing };
                     });
                     break;
                 case 'incoming':
-                    filename = '입고예정.xlsx';
+                    filename = '입고.xlsx';
                     const incomingData = loadData('incoming');
                     data = incomingData.map(i => {
                         const product = products.find(p => p.id === i.productId);
-                        return { '입고예정일': i.expectedDate, '모델명': product?.name || '', '수량': i.quantity, '비고': i.memo };
+                        return { '입고일': i.expectedDate, '모델명': product?.name || '', '수량': i.quantity, '비고': i.memo };
                     });
                     break;
                 case 'outgoing':
-                    filename = '출고예정.xlsx';
+                    filename = '출고.xlsx';
                     const outgoingData = loadData('outgoing');
                     data = outgoingData.map(o => {
                         const product = products.find(p => p.id === o.productId);
-                        return { '출고예정일': o.expectedDate, '모델명': product?.name || '', '지역': CHANNELS[o.channel], '수량': o.quantity, '고객명': o.customer, '비고': o.memo };
+                        return { '출고일': o.expectedDate, '모델명': product?.name || '', '지역': CHANNELS[o.channel], '수량': o.quantity, '고객명': o.customer, '비고': o.memo };
                     });
                     break;
             }
@@ -1538,8 +1538,8 @@
             let data = [], filename = '';
             switch(type) {
                 case 'products': filename = '제품목록_템플릿.xlsx'; data = [{ '모델명': 'RB-100', '카테고리': '로보틱스', '설명': '로보틱스 제품' }]; break;
-                case 'incoming': filename = '입고예정_템플릿.xlsx'; data = [{ '모델명': 'VMC-850', '수량': 5, '입고예정일': '2026-02-15', '비고': '' }]; break;
-                case 'outgoing': filename = '출고예정_템플릿.xlsx'; data = [{ '모델명': 'VMC-850', '지역': '국내', '수량': 2, '출고예정일': '2026-02-10', '고객명': '고객사', '비고': '' }]; break;
+                case 'incoming': filename = '입고_템플릿.xlsx'; data = [{ '모델명': 'VMC-850', '수량': 5, '입고일': '2026-02-15', '비고': '' }]; break;
+                case 'outgoing': filename = '출고_템플릿.xlsx'; data = [{ '모델명': 'VMC-850', '지역': '국내', '수량': 2, '출고일': '2026-02-10', '고객명': '고객사', '비고': '' }]; break;
             }
             const ws = XLSX.utils.json_to_sheet(data);
             const wb = XLSX.utils.book_new();
@@ -1588,11 +1588,11 @@
                     data.forEach(row => {
                         const product = products.find(p => p.name === row['모델명']);
                         if (product && row['수량']) {
-                            incoming.push({ id: generateId('I'), productId: product.id, quantity: parseInt(row['수량']), expectedDate: row['입고예정일'] || new Date().toISOString().split('T')[0], memo: row['비고'] || '' });
+                            incoming.push({ id: generateId('I'), productId: product.id, quantity: parseInt(row['수량']), expectedDate: row['입고일'] || new Date().toISOString().split('T')[0], memo: row['비고'] || '' });
                         }
                     });
                     saveData('incoming', incoming);
-                    alert('입고 예정 데이터를 가져왔습니다.');
+                    alert('입고 데이터를 가져왔습니다.');
                     renderIncomingTable();
                     break;
                 case 'outgoing':
@@ -1601,11 +1601,11 @@
                     data.forEach(row => {
                         const product = products.find(p => p.name === row['모델명']);
                         if (product && row['수량']) {
-                            outgoing.push({ id: generateId('O'), productId: product.id, channel: channelReverse[row['지역']] || 'domestic', quantity: parseInt(row['수량']), expectedDate: row['출고예정일'] || new Date().toISOString().split('T')[0], customer: row['고객명'] || '', memo: row['비고'] || '' });
+                            outgoing.push({ id: generateId('O'), productId: product.id, channel: channelReverse[row['지역']] || 'domestic', quantity: parseInt(row['수량']), expectedDate: row['출고일'] || new Date().toISOString().split('T')[0], customer: row['고객명'] || '', memo: row['비고'] || '' });
                         }
                     });
                     saveData('outgoing', outgoing);
-                    alert('출고 예정 데이터를 가져왔습니다.');
+                    alert('출고 데이터를 가져왔습니다.');
                     renderOutgoingTable();
                     break;
             }
