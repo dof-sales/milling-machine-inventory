@@ -328,30 +328,30 @@
                 <table class="w-full text-sm">
                     <thead>
                         <tr class="bg-slate-50 border-b border-slate-100">
-                            <th rowspan="2" class="px-4 py-3 text-left text-sm font-semibold text-slate-500 uppercase tracking-wider cursor-pointer hover:bg-slate-100 select-none" onclick="sortInventory('category')">
+                            <th rowspan="2" class="px-4 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider cursor-pointer hover:bg-slate-100 select-none" onclick="sortInventory('category')">
                                 <span class="flex items-center">카테고리 <span class="ml-1 sort-icon" data-col="category">↕</span></span>
                             </th>
-                            <th rowspan="2" class="px-4 py-3 text-left text-sm font-semibold text-slate-500 uppercase tracking-wider cursor-pointer hover:bg-slate-100 select-none" onclick="sortInventory('name')">
+                            <th rowspan="2" class="px-4 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider cursor-pointer hover:bg-slate-100 select-none" onclick="sortInventory('name')">
                                 <span class="flex items-center">모델명 <span class="ml-1 sort-icon" data-col="name">↕</span></span>
                             </th>
-                            <th rowspan="2" class="px-4 py-3 text-center text-sm font-semibold text-slate-500 uppercase tracking-wider cursor-pointer hover:bg-slate-100 select-none" onclick="sortInventory('currentStock')">
+                            <th rowspan="2" class="px-4 py-3 text-center text-xs font-semibold text-slate-500 uppercase tracking-wider cursor-pointer hover:bg-slate-100 select-none" onclick="sortInventory('currentStock')">
                                 <span class="flex items-center justify-center">현재재고 <span class="ml-1 sort-icon" data-col="currentStock">↕</span></span>
                             </th>
-                            <th rowspan="2" class="px-4 py-3 text-center text-sm font-semibold text-slate-500 uppercase tracking-wider cursor-pointer hover:bg-slate-100 select-none" onclick="sortInventory('incoming')">
+                            <th rowspan="2" class="px-4 py-3 text-center text-xs font-semibold text-slate-500 uppercase tracking-wider cursor-pointer hover:bg-slate-100 select-none" onclick="sortInventory('incoming')">
                                 <span class="flex items-center justify-center">입고예정 <span class="ml-1 sort-icon" data-col="incoming">↕</span></span>
                             </th>
-                            <th colspan="5" class="px-4 py-2 text-center text-sm font-semibold text-slate-600 uppercase tracking-wider bg-gradient-to-r from-sky-50 via-teal-50 to-violet-50 border-b border-slate-200">출고예정</th>
-                            <th rowspan="2" class="px-4 py-3 text-center text-sm font-semibold text-slate-600 uppercase tracking-wider bg-slate-100 cursor-pointer hover:bg-slate-200 select-none" onclick="sortInventory('expectedStock')">
+                            <th colspan="5" class="px-4 py-2 text-center text-xs font-semibold text-slate-600 uppercase tracking-wider bg-gradient-to-r from-sky-50 via-teal-50 to-violet-50 border-b border-slate-200">출고예정</th>
+                            <th rowspan="2" class="px-4 py-3 text-center text-xs font-semibold text-slate-600 uppercase tracking-wider bg-slate-100 cursor-pointer hover:bg-slate-200 select-none" onclick="sortInventory('expectedStock')">
                                 <span class="flex items-center justify-center">잔여재고 <span class="ml-1 sort-icon" data-col="expectedStock">↕</span></span>
                             </th>
-                            <th rowspan="2" class="px-4 py-3 text-center text-sm font-semibold text-slate-500 uppercase tracking-wider no-print">수정</th>
+                            <th rowspan="2" class="px-4 py-3 text-center text-xs font-semibold text-slate-500 uppercase tracking-wider no-print">수정</th>
                         </tr>
                         <tr class="bg-slate-50 border-b border-slate-200">
-                            <th class="px-4 py-2 text-center text-sm font-semibold text-sky-600 uppercase tracking-wider bg-sky-50/50">국내</th>
-                            <th class="px-4 py-2 text-center text-sm font-semibold text-teal-600 uppercase tracking-wider bg-teal-50/50">해외</th>
-                            <th class="px-4 py-2 text-center text-sm font-semibold text-rose-600 uppercase tracking-wider bg-rose-50/50">일본</th>
-                            <th class="px-4 py-2 text-center text-sm font-semibold text-amber-600 uppercase tracking-wider bg-amber-50/50">미국</th>
-                            <th class="px-4 py-2 text-center text-sm font-semibold text-violet-600 uppercase tracking-wider bg-violet-50/50">동남아</th>
+                            <th class="px-4 py-2 text-center text-xs font-semibold text-sky-600 uppercase tracking-wider bg-sky-50/50">국내</th>
+                            <th class="px-4 py-2 text-center text-xs font-semibold text-teal-600 uppercase tracking-wider bg-teal-50/50">해외</th>
+                            <th class="px-4 py-2 text-center text-xs font-semibold text-rose-600 uppercase tracking-wider bg-rose-50/50">일본</th>
+                            <th class="px-4 py-2 text-center text-xs font-semibold text-amber-600 uppercase tracking-wider bg-amber-50/50">미국</th>
+                            <th class="px-4 py-2 text-center text-xs font-semibold text-violet-600 uppercase tracking-wider bg-violet-50/50">동남아</th>
                         </tr>
                     </thead>
                     <tbody id="inventoryTable" class="divide-y divide-slate-100"></tbody>
@@ -372,17 +372,17 @@
                 <table class="w-full">
                     <thead>
                         <tr class="bg-slate-50 border-b border-slate-200">
-                            <th class="px-5 py-4 text-left text-sm font-semibold text-slate-500 uppercase tracking-wider cursor-pointer hover:bg-slate-100 select-none" onclick="sortIncoming('expectedDate')">
+                            <th class="px-5 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider cursor-pointer hover:bg-slate-100 select-none" onclick="sortIncoming('expectedDate')">
                                 <span class="flex items-center">입고일 <span class="ml-1 sort-icon-incoming" data-col="expectedDate">↕</span></span>
                             </th>
-                            <th class="px-5 py-4 text-left text-sm font-semibold text-slate-500 uppercase tracking-wider cursor-pointer hover:bg-slate-100 select-none" onclick="sortIncoming('productName')">
+                            <th class="px-5 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider cursor-pointer hover:bg-slate-100 select-none" onclick="sortIncoming('productName')">
                                 <span class="flex items-center">모델명 <span class="ml-1 sort-icon-incoming" data-col="productName">↕</span></span>
                             </th>
-                            <th class="px-5 py-4 text-center text-sm font-semibold text-slate-500 uppercase tracking-wider cursor-pointer hover:bg-slate-100 select-none" onclick="sortIncoming('quantity')">
+                            <th class="px-5 py-4 text-center text-xs font-semibold text-slate-500 uppercase tracking-wider cursor-pointer hover:bg-slate-100 select-none" onclick="sortIncoming('quantity')">
                                 <span class="flex items-center justify-center">수량 <span class="ml-1 sort-icon-incoming" data-col="quantity">↕</span></span>
                             </th>
-                            <th class="px-5 py-4 text-left text-sm font-semibold text-slate-500 uppercase tracking-wider">비고</th>
-                            <th class="px-5 py-4 text-right text-sm font-semibold text-slate-500 uppercase tracking-wider no-print">작업</th>
+                            <th class="px-5 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">비고</th>
+                            <th class="px-5 py-4 text-right text-xs font-semibold text-slate-500 uppercase tracking-wider no-print">작업</th>
                         </tr>
                     </thead>
                     <tbody id="incomingTable" class="divide-y divide-slate-100"></tbody>
@@ -413,23 +413,23 @@
                 <table class="w-full">
                     <thead>
                         <tr class="bg-slate-50 border-b border-slate-200">
-                            <th class="px-5 py-4 text-left text-sm font-semibold text-slate-500 uppercase tracking-wider cursor-pointer hover:bg-slate-100 select-none" onclick="sortOutgoing('expectedDate')">
+                            <th class="px-5 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider cursor-pointer hover:bg-slate-100 select-none" onclick="sortOutgoing('expectedDate')">
                                 <span class="flex items-center">출고일 <span class="ml-1 sort-icon-outgoing" data-col="expectedDate">↕</span></span>
                             </th>
-                            <th class="px-5 py-4 text-left text-sm font-semibold text-slate-500 uppercase tracking-wider cursor-pointer hover:bg-slate-100 select-none" onclick="sortOutgoing('productName')">
+                            <th class="px-5 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider cursor-pointer hover:bg-slate-100 select-none" onclick="sortOutgoing('productName')">
                                 <span class="flex items-center">모델명 <span class="ml-1 sort-icon-outgoing" data-col="productName">↕</span></span>
                             </th>
-                            <th class="px-5 py-4 text-left text-sm font-semibold text-slate-500 uppercase tracking-wider cursor-pointer hover:bg-slate-100 select-none" onclick="sortOutgoing('channel')">
+                            <th class="px-5 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider cursor-pointer hover:bg-slate-100 select-none" onclick="sortOutgoing('channel')">
                                 <span class="flex items-center">지역 <span class="ml-1 sort-icon-outgoing" data-col="channel">↕</span></span>
                             </th>
-                            <th class="px-5 py-4 text-center text-sm font-semibold text-slate-500 uppercase tracking-wider cursor-pointer hover:bg-slate-100 select-none" onclick="sortOutgoing('quantity')">
+                            <th class="px-5 py-4 text-center text-xs font-semibold text-slate-500 uppercase tracking-wider cursor-pointer hover:bg-slate-100 select-none" onclick="sortOutgoing('quantity')">
                                 <span class="flex items-center justify-center">수량 <span class="ml-1 sort-icon-outgoing" data-col="quantity">↕</span></span>
                             </th>
-                            <th class="px-5 py-4 text-left text-sm font-semibold text-slate-500 uppercase tracking-wider cursor-pointer hover:bg-slate-100 select-none" onclick="sortOutgoing('customer')">
+                            <th class="px-5 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider cursor-pointer hover:bg-slate-100 select-none" onclick="sortOutgoing('customer')">
                                 <span class="flex items-center">고객명 <span class="ml-1 sort-icon-outgoing" data-col="customer">↕</span></span>
                             </th>
-                            <th class="px-5 py-4 text-left text-sm font-semibold text-slate-500 uppercase tracking-wider">비고</th>
-                            <th class="px-5 py-4 text-right text-sm font-semibold text-slate-500 uppercase tracking-wider no-print">작업</th>
+                            <th class="px-5 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">비고</th>
+                            <th class="px-5 py-4 text-right text-xs font-semibold text-slate-500 uppercase tracking-wider no-print">작업</th>
                         </tr>
                     </thead>
                     <tbody id="outgoingTable" class="divide-y divide-slate-100"></tbody>
