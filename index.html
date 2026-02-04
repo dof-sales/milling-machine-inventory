@@ -222,8 +222,8 @@
                 <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 card-hover">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-slate-500 text-sm font-medium">이번 주 입고</p>
-                            <p class="text-3xl font-bold text-slate-800 mt-1" id="weeklyIncoming">0</p>
+                            <p class="text-slate-500 text-sm font-medium">이번 달 입고</p>
+                            <p class="text-3xl font-bold text-slate-800 mt-1" id="monthlyIncoming">0</p>
                         </div>
                         <div class="w-12 h-12 rounded-xl gradient-purple flex items-center justify-center">
                             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16V4m0 0L3 8m4-4l4 4"/></svg>
@@ -233,8 +233,8 @@
                 <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-5 card-hover">
                     <div class="flex items-center justify-between">
                         <div>
-                            <p class="text-slate-500 text-sm font-medium">이번 주 출고</p>
-                            <p class="text-3xl font-bold text-slate-800 mt-1" id="weeklyOutgoing">0</p>
+                            <p class="text-slate-500 text-sm font-medium">이번 달 출고</p>
+                            <p class="text-3xl font-bold text-slate-800 mt-1" id="monthlyOutgoing">0</p>
                         </div>
                         <div class="w-12 h-12 rounded-xl gradient-warning flex items-center justify-center">
                             <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8V4m0 0l4 4m-4-4l-4 4"/></svg>
@@ -807,21 +807,21 @@
             document.getElementById('totalStock').textContent = inventory.reduce((sum, i) => sum + i.quantity, 0);
 
             const today = new Date();
-            const weekEnd = new Date(today);
-            weekEnd.setDate(weekEnd.getDate() + 7);
+            const monthStart = new Date(today.getFullYear(), today.getMonth(), 1);
+            const monthEnd = new Date(today.getFullYear(), today.getMonth() + 1, 0);
 
-            const weeklyIn = incoming.filter(i => {
+            const monthlyIn = incoming.filter(i => {
                 const date = new Date(i.expectedDate);
-                return date >= today && date <= weekEnd;
+                return date >= monthStart && date <= monthEnd;
             }).reduce((sum, i) => sum + i.quantity, 0);
 
-            const weeklyOut = outgoing.filter(o => {
+            const monthlyOut = outgoing.filter(o => {
                 const date = new Date(o.expectedDate);
-                return date >= today && date <= weekEnd;
+                return date >= monthStart && date <= monthEnd;
             }).reduce((sum, o) => sum + o.quantity, 0);
 
-            document.getElementById('weeklyIncoming').textContent = weeklyIn;
-            document.getElementById('weeklyOutgoing').textContent = weeklyOut;
+            document.getElementById('monthlyIncoming').textContent = monthlyIn;
+            document.getElementById('monthlyOutgoing').textContent = monthlyOut;
 
             // 채널별 출고 현황 차트
             const channelData = {};
