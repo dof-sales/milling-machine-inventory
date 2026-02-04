@@ -342,7 +342,7 @@
                             </th>
                             <th colspan="5" class="px-4 py-2 text-center text-xs font-semibold text-slate-600 uppercase tracking-wider bg-gradient-to-r from-sky-50 via-teal-50 to-violet-50 border-b border-slate-200">출고예정</th>
                             <th rowspan="2" class="px-4 py-3 text-center text-xs font-semibold text-slate-600 uppercase tracking-wider bg-slate-100 cursor-pointer hover:bg-slate-200 select-none" onclick="sortInventory('expectedStock')">
-                                <span class="flex items-center justify-center">예상잔고 <span class="ml-1 sort-icon" data-col="expectedStock">↕</span></span>
+                                <span class="flex items-center justify-center">잔여재고 <span class="ml-1 sort-icon" data-col="expectedStock">↕</span></span>
                             </th>
                             <th rowspan="2" class="px-4 py-3 text-center text-xs font-semibold text-slate-500 uppercase tracking-wider no-print">수정</th>
                         </tr>
@@ -1193,7 +1193,7 @@
                         <td class="px-4 py-4 text-center bg-amber-50/50">${p.channelOutgoing.usa > 0 ? `<span class="text-amber-700 font-medium cursor-pointer hover:underline" onclick="showOutgoingDetail('${p.id}', '${p.name}', 'usa')">-${p.channelOutgoing.usa}</span>` : '<span class="text-slate-300">-</span>'}</td>
                         <td class="px-4 py-4 text-center bg-violet-50/50">${p.channelOutgoing.sea > 0 ? `<span class="text-violet-700 font-medium cursor-pointer hover:underline" onclick="showOutgoingDetail('${p.id}', '${p.name}', 'sea')">-${p.channelOutgoing.sea}</span>` : '<span class="text-slate-300">-</span>'}</td>
                         <td class="px-4 py-4 text-center bg-slate-100">
-                            <span class="font-bold ${p.expectedStock < 0 ? 'text-rose-600' : 'text-slate-800'}">${p.expectedStock}</span>
+                            <span class="font-bold ${p.expectedStock < 10 ? 'text-rose-600' : 'text-slate-800'}">${p.expectedStock}</span>
                         </td>
                         <td class="px-4 py-4 text-center no-print">
                             <button onclick="openStockModal('${p.id}')" class="text-sky-600 hover:text-sky-800 font-medium text-sm">수정</button>
@@ -1818,7 +1818,7 @@
                         const channelOutgoing = {};
                         Object.keys(CHANNELS).forEach(ch => channelOutgoing[ch] = outgoing.filter(o => o.productId === p.id && o.channel === ch).reduce((sum, o) => sum + o.quantity, 0));
                         const totalOutgoing = Object.values(channelOutgoing).reduce((sum, v) => sum + v, 0);
-                        return { '모델명': p.name, '현재재고': currentStock, '입고': totalIncoming, '국내출고': channelOutgoing.domestic, '해외출고': channelOutgoing.overseas, '일본출고': channelOutgoing.japan, '미국출고': channelOutgoing.usa, '동남아출고': channelOutgoing.sea, '예상잔고': currentStock + totalIncoming - totalOutgoing };
+                        return { '모델명': p.name, '현재재고': currentStock, '입고': totalIncoming, '국내출고': channelOutgoing.domestic, '해외출고': channelOutgoing.overseas, '일본출고': channelOutgoing.japan, '미국출고': channelOutgoing.usa, '동남아출고': channelOutgoing.sea, '잔여재고': currentStock + totalIncoming - totalOutgoing };
                     });
                     break;
                 case 'incoming':
