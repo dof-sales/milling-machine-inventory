@@ -762,39 +762,11 @@
 
         // ===== 샘플 데이터 =====
         function initializeSampleData() {
-            const products = [
-                { id: 'P001', name: 'RB-100', category: '로보틱스', description: '로보틱스 제품' },
-                { id: 'P002', name: 'PH-200', category: 'Philden', description: 'Philden 제품' },
-                { id: 'P003', name: 'JN-300', category: 'JINY', description: 'JINY 제품' },
-            ];
-
-            const inventory = [
-                { productId: 'P001', quantity: 8, updatedAt: new Date().toISOString().split('T')[0] },
-                { productId: 'P002', quantity: 5, updatedAt: new Date().toISOString().split('T')[0] },
-                { productId: 'P003', quantity: 3, updatedAt: new Date().toISOString().split('T')[0] },
-                { productId: 'P004', quantity: 2, updatedAt: new Date().toISOString().split('T')[0] },
-                { productId: 'P005', quantity: 1, updatedAt: new Date().toISOString().split('T')[0] },
-            ];
-
-            const today = new Date();
-            const incoming = [
-                { id: 'I001', productId: 'P001', quantity: 5, expectedDate: addDays(today, 3), supplier: '대우공작기계', memo: '정기 입고' },
-                { id: 'I002', productId: 'P002', quantity: 3, expectedDate: addDays(today, 7), supplier: '현대위아', memo: '' },
-                { id: 'I003', productId: 'P004', quantity: 2, expectedDate: addDays(today, 14), supplier: 'DMG MORI', memo: '특별 주문' },
-            ];
-
-            const outgoing = [
-                { id: 'O001', productId: 'P001', channel: 'domestic', quantity: 2, expectedDate: addDays(today, 2), customer: '삼성전자', memo: '' },
-                { id: 'O002', productId: 'P001', channel: 'japan', quantity: 1, expectedDate: addDays(today, 5), customer: '도요타', memo: '' },
-                { id: 'O003', productId: 'P002', channel: 'usa', quantity: 2, expectedDate: addDays(today, 4), customer: 'Tesla', memo: '급행 배송' },
-                { id: 'O004', productId: 'P003', channel: 'overseas', quantity: 1, expectedDate: addDays(today, 6), customer: '보쉬', memo: '' },
-                { id: 'O005', productId: 'P004', channel: 'sea', quantity: 1, expectedDate: addDays(today, 8), customer: '빈패스트', memo: '' },
-            ];
-
-            saveData('products', products);
-            saveData('inventory', inventory);
-            saveData('incoming', incoming);
-            saveData('outgoing', outgoing);
+            // 빈 데이터로 초기화
+            saveData('products', []);
+            saveData('inventory', []);
+            saveData('incoming', []);
+            saveData('outgoing', []);
         }
 
         function addDays(date, days) {
@@ -1602,9 +1574,9 @@
         }
 
         function resetData() {
-            if (!confirm('모든 데이터를 초기화하고 샘플 데이터로 복원하시겠습니까?')) return;
+            if (!confirm('모든 데이터를 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.')) return;
             initializeSampleData();
-            alert('데이터가 초기화되었습니다.');
+            alert('모든 데이터가 삭제되었습니다.');
             renderDashboard();
         }
 
