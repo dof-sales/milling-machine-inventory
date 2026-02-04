@@ -127,7 +127,7 @@
     <header class="bg-white border-b border-slate-200 no-print">
         <div class="max-w-7xl mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
-                <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-4 cursor-pointer" onclick="goToDashboard()">
                     <img src="logo.png" alt="DOF Logo" class="h-10 w-auto">
                     <div>
                         <h1 class="text-xl font-semibold tracking-tight text-slate-800">밀링머신 재고 관리</h1>
@@ -890,6 +890,14 @@
                 refreshCurrentTab(btn.dataset.tab);
             });
         });
+
+        function goToDashboard() {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector('.tab-btn[data-tab="dashboard"]').classList.add('active');
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            document.getElementById('dashboard').classList.add('active');
+            renderDashboard();
+        }
 
         function refreshCurrentTab(tab) {
             switch(tab) {
