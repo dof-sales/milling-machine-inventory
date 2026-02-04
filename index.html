@@ -124,24 +124,22 @@
 </head>
 <body class="bg-slate-50 min-h-screen">
     <!-- 헤더 -->
-    <header class="gradient-dark text-white no-print">
-        <div class="max-w-7xl mx-auto px-6 py-5">
+    <header class="bg-white border-b border-slate-200 no-print">
+        <div class="max-w-7xl mx-auto px-6 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-4">
-                    <div class="bg-white rounded-lg p-1.5">
-                        <img src="logo.png" alt="DOF Logo" class="h-8 w-auto">
-                    </div>
+                    <img src="logo.png" alt="DOF Logo" class="h-10 w-auto">
                     <div>
-                        <h1 class="text-xl font-semibold tracking-tight">밀링머신 재고 관리</h1>
+                        <h1 class="text-xl font-semibold tracking-tight text-slate-800">밀링머신 재고 관리</h1>
                         <p class="text-slate-400 text-xs mt-0.5">Inventory Management System</p>
                     </div>
                 </div>
                 <div class="text-right text-sm">
                     <div id="syncStatus" class="flex items-center justify-end space-x-2 mb-1">
-                        <span class="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" id="syncIndicator"></span>
-                        <span class="text-yellow-400 text-xs" id="syncText">연결 중...</span>
+                        <span class="w-2 h-2 rounded-full bg-yellow-500 animate-pulse" id="syncIndicator"></span>
+                        <span class="text-yellow-600 text-xs" id="syncText">연결 중...</span>
                     </div>
-                    <span id="currentDate" class="text-slate-400"></span>
+                    <span id="currentDate" class="text-slate-500"></span>
                 </div>
             </div>
         </div>
@@ -833,12 +831,12 @@
             const indicator = document.getElementById('syncIndicator');
             const text = document.getElementById('syncText');
             if (connected) {
-                indicator.className = 'w-2 h-2 rounded-full bg-green-400';
-                text.className = 'text-green-400 text-xs';
+                indicator.className = 'w-2 h-2 rounded-full bg-green-500';
+                text.className = 'text-green-600 text-xs';
                 text.textContent = '실시간 동기화';
             } else {
-                indicator.className = 'w-2 h-2 rounded-full bg-red-400';
-                text.className = 'text-red-400 text-xs';
+                indicator.className = 'w-2 h-2 rounded-full bg-red-500';
+                text.className = 'text-red-600 text-xs';
                 text.textContent = '연결 끊김';
             }
         }
