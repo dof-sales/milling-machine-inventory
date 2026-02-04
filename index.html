@@ -382,9 +382,6 @@
                             <th class="px-5 py-4 text-center text-xs font-semibold text-slate-500 uppercase tracking-wider cursor-pointer hover:bg-slate-100 select-none" onclick="sortIncoming('quantity')">
                                 <span class="flex items-center justify-center">수량 <span class="ml-1 sort-icon-incoming" data-col="quantity">↕</span></span>
                             </th>
-                            <th class="px-5 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider cursor-pointer hover:bg-slate-100 select-none" onclick="sortIncoming('supplier')">
-                                <span class="flex items-center">공급업체 <span class="ml-1 sort-icon-incoming" data-col="supplier">↕</span></span>
-                            </th>
                             <th class="px-5 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">비고</th>
                             <th class="px-5 py-4 text-right text-xs font-semibold text-slate-500 uppercase tracking-wider no-print">작업</th>
                         </tr>
@@ -648,10 +645,6 @@
                         <label class="block text-sm font-medium text-slate-700 mb-2">입고 예정일 *</label>
                         <input type="date" id="incomingDate" required class="w-full border border-slate-300 rounded-xl px-4 py-2.5 text-sm">
                     </div>
-                </div>
-                <div>
-                    <label class="block text-sm font-medium text-slate-700 mb-2">공급업체</label>
-                    <input type="text" id="incomingSupplier" class="w-full border border-slate-300 rounded-xl px-4 py-2.5 text-sm" placeholder="공급업체명">
                 </div>
                 <div>
                     <label class="block text-sm font-medium text-slate-700 mb-2">비고</label>
@@ -1259,7 +1252,6 @@
                     case 'expectedDate': valA = a.expectedDate || ''; valB = b.expectedDate || ''; break;
                     case 'productName': valA = a.productName || ''; valB = b.productName || ''; break;
                     case 'quantity': valA = a.quantity; valB = b.quantity; break;
-                    case 'supplier': valA = a.supplier || ''; valB = b.supplier || ''; break;
                     default: valA = a.expectedDate || ''; valB = b.expectedDate || '';
                 }
                 if (typeof valA === 'string') return valA.localeCompare(valB) * dir;
@@ -1276,7 +1268,6 @@
                         <td class="px-5 py-4 text-sm text-slate-600">${i.expectedDate}</td>
                         <td class="px-5 py-4 text-sm font-semibold text-slate-800">${i.productName}</td>
                         <td class="px-5 py-4 text-center"><span class="font-bold text-emerald-600 bg-emerald-50 px-3 py-1 rounded-lg">${i.quantity}</span></td>
-                        <td class="px-5 py-4 text-sm text-slate-600">${i.supplier || '-'}</td>
                         <td class="px-5 py-4 text-sm text-slate-400">${i.memo || '-'}</td>
                         <td class="px-5 py-4 text-right no-print">
                             <button onclick="editIncoming('${i.id}')" class="text-sky-600 hover:text-sky-800 font-medium text-sm mr-3">수정</button>
@@ -1285,7 +1276,7 @@
                     </tr>
                 `;
             });
-            document.getElementById('incomingTable').innerHTML = html || '<tr><td colspan="6" class="px-5 py-12 text-center text-slate-400">입고 예정이 없습니다</td></tr>';
+            document.getElementById('incomingTable').innerHTML = html || '<tr><td colspan="5" class="px-5 py-12 text-center text-slate-400">입고 예정이 없습니다</td></tr>';
         }
 
         function sortIncoming(column) {
@@ -1316,7 +1307,6 @@
                     document.getElementById('incomingProduct').value = item.productId;
                     document.getElementById('incomingQuantity').value = item.quantity;
                     document.getElementById('incomingDate').value = item.expectedDate;
-                    document.getElementById('incomingSupplier').value = item.supplier || '';
                     document.getElementById('incomingMemo').value = item.memo || '';
                 }
             }
@@ -1334,7 +1324,6 @@
                 productId: document.getElementById('incomingProduct').value,
                 quantity: parseInt(document.getElementById('incomingQuantity').value),
                 expectedDate: document.getElementById('incomingDate').value,
-                supplier: document.getElementById('incomingSupplier').value,
                 memo: document.getElementById('incomingMemo').value
             };
 
@@ -1525,7 +1514,7 @@
                     const incomingData = loadData('incoming');
                     data = incomingData.map(i => {
                         const product = products.find(p => p.id === i.productId);
-                        return { '입고예정일': i.expectedDate, '모델명': product?.name || '', '수량': i.quantity, '공급업체': i.supplier, '비고': i.memo };
+                        return { '입고예정일': i.expectedDate, '모델명': product?.name || '', '수량': i.quantity, '비고': i.memo };
                     });
                     break;
                 case 'outgoing':
@@ -1549,7 +1538,7 @@
             let data = [], filename = '';
             switch(type) {
                 case 'products': filename = '제품목록_템플릿.xlsx'; data = [{ '모델명': 'RB-100', '카테고리': '로보틱스', '설명': '로보틱스 제품' }]; break;
-                case 'incoming': filename = '입고예정_템플릿.xlsx'; data = [{ '모델명': 'VMC-850', '수량': 5, '입고예정일': '2026-02-15', '공급업체': '공급업체명', '비고': '' }]; break;
+                case 'incoming': filename = '입고예정_템플릿.xlsx'; data = [{ '모델명': 'VMC-850', '수량': 5, '입고예정일': '2026-02-15', '비고': '' }]; break;
                 case 'outgoing': filename = '출고예정_템플릿.xlsx'; data = [{ '모델명': 'VMC-850', '지역': '국내', '수량': 2, '출고예정일': '2026-02-10', '고객명': '고객사', '비고': '' }]; break;
             }
             const ws = XLSX.utils.json_to_sheet(data);
@@ -1599,7 +1588,7 @@
                     data.forEach(row => {
                         const product = products.find(p => p.name === row['모델명']);
                         if (product && row['수량']) {
-                            incoming.push({ id: generateId('I'), productId: product.id, quantity: parseInt(row['수량']), expectedDate: row['입고예정일'] || new Date().toISOString().split('T')[0], supplier: row['공급업체'] || '', memo: row['비고'] || '' });
+                            incoming.push({ id: generateId('I'), productId: product.id, quantity: parseInt(row['수량']), expectedDate: row['입고예정일'] || new Date().toISOString().split('T')[0], memo: row['비고'] || '' });
                         }
                     });
                     saveData('incoming', incoming);
