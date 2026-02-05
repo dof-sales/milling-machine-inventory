@@ -918,9 +918,15 @@
             const outgoing = loadData('outgoing');
 
             document.getElementById('totalProducts').textContent = products.length;
-            document.getElementById('totalStock').textContent = inventory.reduce((sum, i) => sum + i.quantity, 0);
 
             const today = new Date();
+            today.setHours(0, 0, 0, 0);
+
+            // 총 재고 = inventory 기본값 + 과거 입고
+            const baseStock = inventory.reduce((sum, i) => sum + i.quantity, 0);
+            const pastIncomingTotal = incoming.filter(i => new Date(i.expectedDate) < today).reduce((sum, i) => sum + i.quantity, 0);
+            document.getElementById('totalStock').textContent = baseStock + pastIncomingTotal;
+
             const monthStart = new Date(today.getFullYear(), today.getMonth(), 1);
             const monthEnd = new Date(today.getFullYear(), today.getMonth() + 1, 0);
 
@@ -1135,7 +1141,12 @@
             // 데이터 준비
             let inventoryData = products.map(p => {
                 const inv = inventory.find(i => i.productId === p.id);
-                const currentStock = inv ? inv.quantity : 0;
+                const baseStock = inv ? inv.quantity : 0;
+
+                // 과거 입고 (오늘 이전): 현재재고에 합산
+                const pastIncoming = incoming.filter(i => i.productId === p.id && new Date(i.expectedDate) < today);
+                const pastIncomingTotal = pastIncoming.reduce((sum, i) => sum + i.quantity, 0);
+                const currentStock = baseStock + pastIncomingTotal;
 
                 // 입고예정: 오늘 이후의 입고만
                 const futureIncoming = incoming.filter(i => i.productId === p.id && new Date(i.expectedDate) >= today);
@@ -1819,14 +1830,19 @@
                     const inventory = loadData('inventory');
                     const incoming = loadData('incoming');
                     const outgoing = loadData('outgoing');
+                    const todayExcel = new Date();
+                    todayExcel.setHours(0, 0, 0, 0);
                     data = products.map(p => {
                         const inv = inventory.find(i => i.productId === p.id);
-                        const currentStock = inv ? inv.quantity : 0;
-                        const totalIncoming = incoming.filter(i => i.productId === p.id).reduce((sum, i) => sum + i.quantity, 0);
+                        const baseStock = inv ? inv.quantity : 0;
+                        const pastIncoming = incoming.filter(i => i.productId === p.id && new Date(i.expectedDate) < todayExcel);
+                        const pastIncomingTotal = pastIncoming.reduce((sum, i) => sum + i.quantity, 0);
+                        const currentStock = baseStock + pastIncomingTotal;
+                        const totalIncoming = incoming.filter(i => i.productId === p.id && new Date(i.expectedDate) >= todayExcel).reduce((sum, i) => sum + i.quantity, 0);
                         const channelOutgoing = {};
-                        Object.keys(CHANNELS).forEach(ch => channelOutgoing[ch] = outgoing.filter(o => o.productId === p.id && o.channel === ch).reduce((sum, o) => sum + o.quantity, 0));
+                        Object.keys(CHANNELS).forEach(ch => channelOutgoing[ch] = outgoing.filter(o => o.productId === p.id && o.channel === ch && new Date(o.expectedDate) >= todayExcel).reduce((sum, o) => sum + o.quantity, 0));
                         const totalOutgoing = Object.values(channelOutgoing).reduce((sum, v) => sum + v, 0);
-                        return { '모델명': p.name, '현재재고': currentStock, '입고': totalIncoming, '국내출고': channelOutgoing.domestic, '해외출고': channelOutgoing.overseas, '일본출고': channelOutgoing.japan, '미국출고': channelOutgoing.usa, '동남아출고': channelOutgoing.sea, '잔여재고': currentStock + totalIncoming - totalOutgoing };
+                        return { '모델명': p.name, '현재재고': currentStock, '입고예정': totalIncoming, '국내출고': channelOutgoing.domestic, '해외출고': channelOutgoing.overseas, '일본출고': channelOutgoing.japan, '미국출고': channelOutgoing.usa, '동남아출고': channelOutgoing.sea, '잔여재고': currentStock + totalIncoming - totalOutgoing };
                     });
                     break;
                 case 'incoming':
