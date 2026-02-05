@@ -922,10 +922,11 @@
             const today = new Date();
             today.setHours(0, 0, 0, 0);
 
-            // 총 재고 = inventory 기본값 + 과거 입고
+            // 총 재고 = inventory 기본값 + 과거 입고 - 과거 출고
             const baseStock = inventory.reduce((sum, i) => sum + i.quantity, 0);
             const pastIncomingTotal = incoming.filter(i => new Date(i.expectedDate) < today).reduce((sum, i) => sum + i.quantity, 0);
-            document.getElementById('totalStock').textContent = baseStock + pastIncomingTotal;
+            const pastOutgoingTotal = outgoing.filter(o => new Date(o.expectedDate) < today).reduce((sum, o) => sum + o.quantity, 0);
+            document.getElementById('totalStock').textContent = baseStock + pastIncomingTotal - pastOutgoingTotal;
 
             const monthStart = new Date(today.getFullYear(), today.getMonth(), 1);
             const monthEnd = new Date(today.getFullYear(), today.getMonth() + 1, 0);
@@ -1146,7 +1147,12 @@
                 // 과거 입고 (오늘 이전): 현재재고에 합산
                 const pastIncoming = incoming.filter(i => i.productId === p.id && new Date(i.expectedDate) < today);
                 const pastIncomingTotal = pastIncoming.reduce((sum, i) => sum + i.quantity, 0);
-                const currentStock = baseStock + pastIncomingTotal;
+
+                // 과거 출고 (오늘 이전): 현재재고에서 차감
+                const pastOutgoing = outgoing.filter(o => o.productId === p.id && new Date(o.expectedDate) < today);
+                const pastOutgoingTotal = pastOutgoing.reduce((sum, o) => sum + o.quantity, 0);
+
+                const currentStock = baseStock + pastIncomingTotal - pastOutgoingTotal;
 
                 // 입고예정: 오늘 이후의 입고만
                 const futureIncoming = incoming.filter(i => i.productId === p.id && new Date(i.expectedDate) >= today);
@@ -1837,7 +1843,9 @@
                         const baseStock = inv ? inv.quantity : 0;
                         const pastIncoming = incoming.filter(i => i.productId === p.id && new Date(i.expectedDate) < todayExcel);
                         const pastIncomingTotal = pastIncoming.reduce((sum, i) => sum + i.quantity, 0);
-                        const currentStock = baseStock + pastIncomingTotal;
+                        const pastOutgoing = outgoing.filter(o => o.productId === p.id && new Date(o.expectedDate) < todayExcel);
+                        const pastOutgoingTotal = pastOutgoing.reduce((sum, o) => sum + o.quantity, 0);
+                        const currentStock = baseStock + pastIncomingTotal - pastOutgoingTotal;
                         const totalIncoming = incoming.filter(i => i.productId === p.id && new Date(i.expectedDate) >= todayExcel).reduce((sum, i) => sum + i.quantity, 0);
                         const channelOutgoing = {};
                         Object.keys(CHANNELS).forEach(ch => channelOutgoing[ch] = outgoing.filter(o => o.productId === p.id && o.channel === ch && new Date(o.expectedDate) >= todayExcel).reduce((sum, o) => sum + o.quantity, 0));
