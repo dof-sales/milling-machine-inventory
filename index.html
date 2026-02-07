@@ -1599,10 +1599,17 @@
                 html += `<option value="${ym}">${y}년 ${parseInt(m)}월</option>`;
             });
             select.innerHTML = html;
-            // 값 복원
-            if (currentVal && currentVal !== 'all') {
-                const exists = sorted.includes(currentVal);
-                if (exists) select.value = currentVal;
+            const isFirstLoad = !select.dataset.initialized;
+            if (isFirstLoad) {
+                // 최초 로드 시 현재 월로 기본 설정
+                const now = new Date();
+                const currentMonth = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0');
+                if (sorted.includes(currentMonth)) {
+                    select.value = currentMonth;
+                }
+                select.dataset.initialized = '1';
+            } else if (currentVal && currentVal !== 'all') {
+                if (sorted.includes(currentVal)) select.value = currentVal;
             }
         }
 
