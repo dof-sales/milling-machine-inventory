@@ -1615,11 +1615,13 @@
             select.innerHTML = html;
             const isFirstLoad = !select.dataset.initialized;
             if (isFirstLoad) {
-                // 최초 로드 시 현재 월로 기본 설정
+                // 최초 로드 시 현재 월로 기본 설정, 없으면 가장 최근 월
                 const now = new Date();
                 const currentMonth = now.getFullYear() + '-' + String(now.getMonth() + 1).padStart(2, '0');
                 if (sorted.includes(currentMonth)) {
                     select.value = currentMonth;
+                } else if (sorted.length > 0) {
+                    select.value = sorted[0];
                 }
                 select.dataset.initialized = '1';
             } else if (currentVal && currentVal !== 'all') {
